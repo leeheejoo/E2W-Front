@@ -1,5 +1,7 @@
 # E2WFront
 
+This is Ethereum and EOS Wallet Backend.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
 ## Development server
