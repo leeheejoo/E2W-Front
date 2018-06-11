@@ -1,12 +1,21 @@
 .history {
     background: yellow;
-    height: 90vh;
+    height: 80vh;
     text-align: center;
     vertical-align: middle;
-    line-height: 90vh;   
+    line-height: 80vh;   
+    float: right;
+    width: 50%;
 }
 
-.column {
-    float: left;
-    width: 50%;
+@media ( max-width: 600px ){
+    .history {
+        float: none;
+        width: 100%;
+        background: yellow;
+        height: 90vh;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 90vh;   
+    }
 }

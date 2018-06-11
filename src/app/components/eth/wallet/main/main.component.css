@@ -1,12 +1,21 @@
 .main {
     background: greenyellow;
-    height: 90vh;
+    height: 80vh;
     text-align: center;
     vertical-align: middle;
-    line-height: 90vh;   
-}
-
-.column {
+    line-height: 80vh;   
     float: left;
     width: 50%;
+}
+
+@media ( max-width: 600px ){
+    .main {
+        float: none;
+        width: 100%;
+        background: greenyellow;
+        height: 90vh;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 90vh;   
+    }
 }

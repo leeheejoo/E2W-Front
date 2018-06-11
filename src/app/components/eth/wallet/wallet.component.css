@@ -1,11 +1,14 @@
 .wallet {
     background: greenyellow;
-    height: 90vh;
+    height: 80vh;
     text-align: center;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+@media ( max-width: 600px ){
+    .wallet {
+        width: 100%;
+        height: auto;
+        background: greenyellow;
+        text-align: center;
+    }
 }
