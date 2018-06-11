@@ -1,0 +1,11 @@
+.wallet {
+    background: greenyellow;
+    height: 90vh;
+    text-align: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

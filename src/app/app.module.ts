@@ -6,8 +6,12 @@ import { LoginComponent } from './components/login/login.component';
 import { WalletComponent } from './components/eth/wallet/wallet.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TransactionHistoryComponent } from './components/eos/transaction-history/transaction-history.component';
+import { MainComponent } from './components/eth/wallet/main/main.component';
+import { TransactionHistoryComponent } from './components/eth/wallet/transaction-history/transaction-history.component';
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -17,10 +21,13 @@ import { SecretPadComponent } from './components/secret-pad/secret-pad.component
     NavigationComponent,
     FooterComponent,
     TransactionHistoryComponent,
-    SecretPadComponent
+    SecretPadComponent,
+    MainComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
