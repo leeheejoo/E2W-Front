@@ -15,12 +15,13 @@ import { TransactionHistoryComponent as EOSTransactionHistoryComponent } from '.
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import {AccountService} from './service/account.service';
 import {EthService} from './service/eth.service';
 import {EosService} from './service/eos.service';
+import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
     NavigationComponent,
     FooterComponent,
     SecretPadComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,12 +59,16 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatDialogModule,
     RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [
     AccountService,
     EthService,
     EosService
+  ],
+  entryComponents: [
+    AlertDialogComponent
   ],
   bootstrap: [AppComponent]
 })

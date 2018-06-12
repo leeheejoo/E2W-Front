@@ -1,31 +1,74 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {AlertDialogComponent as AlertDialog} from '../components/dialog/alert-dialog/alert-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Injectable({
   	providedIn: 'root'
 })
 export class AccountService {
 
-	constructor(private http: HttpClient) { 
+	constructor(private http: HttpClient, private dialog: MatDialog) { 
 
 	}
 
 	login(email:string, password:string) {
 
+		let dialogRef;
+
 		if(email && password){
-			alert(`email: ${email}, password: ${password}`);
+
+			dialogRef = this.dialog.open(AlertDialog,{
+				data: { 
+					title:'Login', 
+					message:`email: ${email}, password: ${password}`
+				} 
+			});
+
 		}else{
-			alert('Please enter all input values ​​for login.');
+
+			dialogRef = this.dialog.open(AlertDialog,{
+				data: { 
+					title:'Warning', 
+					message:'Please enter all input values ​​for login.'
+				} 
+			})
 		}
 
+		dialogRef.afterClosed().subscribe(result => {
+			if (result == 'confirm') {
+				console.log('Unregistered');
+			}
+		});
 	}
 
   	regster(email:string, password:string, secret:string){
     
+		let dialogRef;
+
 		if(email && password && secret){
-			alert(`email: ${email}, password: ${password}, secret: ${secret}`);
+
+			dialogRef = this.dialog.open(AlertDialog,{
+				data: { 
+					title:'Login', 
+					message:`email: ${email}, password: ${password}, secret: ${secret}`
+				} 
+			});
+
 		}else{
-			alert('Please enter all input values ​​for sign up.');
+
+			dialogRef = this.dialog.open(AlertDialog,{
+				data: { 
+					title:'Warning', 
+					message:'Please enter all input values ​​for sign up.'
+				} 
+			})
 		}
+
+		dialogRef.afterClosed().subscribe(result => {
+			if (result == 'confirm') {
+				console.log('Unregistered');
+			}
+		});
   	}
 }
