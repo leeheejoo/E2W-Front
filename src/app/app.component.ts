@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   isLogin: boolean;
 
   constructor(){
-    this.isLogin = true;
+    this.isLogin = false;
   }
 
   ngOnInit(){

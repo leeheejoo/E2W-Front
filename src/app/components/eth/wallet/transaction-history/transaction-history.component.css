@@ -1,9 +1,9 @@
 .history {
-    background: yellow;
-    height: 80vh;
+    background: rgb(255, 255, 255);
+    height: 84vh;
     text-align: center;
     vertical-align: middle;
-    line-height: 80vh;   
+    line-height: 84vh;   
     float: right;
     width: 50%;
 }
@@ -12,10 +12,10 @@
     .history {
         float: none;
         width: 100%;
-        background: yellow;
-        height: 90vh;
+        background: rgb(255, 255, 255);
+        height: 92vh;
         text-align: center;
         vertical-align: middle;
-        line-height: 90vh;   
+        line-height: 92vh;   
     }
 }
