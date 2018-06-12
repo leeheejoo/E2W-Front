@@ -18,7 +18,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
+import {AccountService} from './service/account.service';
+import {EthService} from './service/eth.service';
+import {EosService} from './service/eos.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -57,7 +59,11 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [],
+  providers: [
+    AccountService,
+    EthService,
+    EosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
