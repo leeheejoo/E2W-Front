@@ -1,0 +1,14 @@
+.eos-wallet {
+    background: greenyellow;
+    height: 84vh;
+    text-align: center;
+}
+
+@media ( max-width: 600px ){
+    .eos-wallet {
+        width: 100%;
+        height: auto;
+        background: greenyellow;
+        text-align: center;
+    }
+}

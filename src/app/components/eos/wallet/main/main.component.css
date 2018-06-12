@@ -1,15 +1,15 @@
-.eth-history {
+.eos-main {
     background: rgb(255, 255, 255);
     height: 84vh;
     text-align: center;
     vertical-align: middle;
     line-height: 84vh;   
-    float: right;
+    float: left;
     width: 50%;
 }
 
 @media ( max-width: 600px ){
-    .eth-history {
+    .eos-main {
         float: none;
         width: 100%;
         background: rgb(255, 255, 255);

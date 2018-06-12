@@ -1,11 +1,11 @@
-.wallet {
+.eth-wallet {
     background: greenyellow;
     height: 84vh;
     text-align: center;
 }
 
 @media ( max-width: 600px ){
-    .wallet {
+    .eth-wallet {
         width: 100%;
         height: auto;
         background: greenyellow;

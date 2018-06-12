@@ -1,15 +1,13 @@
 <div class="login">
     <img src="assets/images/blockchain.png" class="blockchain-img"/>
-    <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-form-field class="login-input">
+        <input matInput placeholder="Enter your email" [formControl]="emailControl" [(ngModel)]="email" required>
+        <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Enter your password" [type]="passwordHide ? 'password' : 'text'">
+    <mat-form-field class="login-input">
+        <input matInput placeholder="Enter your password" [type]="passwordHide ? 'password' : 'text'" [(ngModel)]="password" >
         <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Enter your secret" [type]="secretHide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="secretHide = !secretHide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
+    <button mat-raised-button color="primary" class="login-button" (click)="submit($event)">LogIn</button>
+    <a routerLink="/register" class="signup-button">Sign Up</a>
 </div>

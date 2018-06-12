@@ -1,0 +1,16 @@
+<div class="register">
+  <img src="assets/images/blockchain.png" class="blockchain-img"/>
+  <mat-form-field class="register-input">
+      <input matInput placeholder="Enter your email" [formControl]="emailControl" [(ngModel)]="email" required>
+      <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="register-input">
+      <input matInput placeholder="Enter your password" [type]="passwordHide ? 'password' : 'text'" [(ngModel)]="password" >
+      <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="register-input">
+      <input matInput placeholder="Enter your secret" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="secret">
+      <mat-icon matSuffix (click)="secretHide = !secretHide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="register-button" (click)="submit($event)">register</button>
+</div>

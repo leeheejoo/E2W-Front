@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
 	emailControl = new FormControl('', [Validators.required, Validators.email]);
 	passwordHide : boolean = true;
@@ -23,10 +23,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	submit(event) {
-		alert("login");
+		alert("test");
 	}
 
 	getErrorMessage() {
 		return this.emailControl.hasError('required') ? 'You must enter a value' : this.emailControl.hasError('email') ? 'Not a valid email' : '';
 	}
+
 }

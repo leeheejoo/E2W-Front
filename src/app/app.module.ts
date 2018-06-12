@@ -3,28 +3,46 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { WalletComponent } from './components/eth/wallet/wallet.component';
+import { RegisterComponent } from './components/register/register.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './components/eth/wallet/main/main.component';
-import { TransactionHistoryComponent } from './components/eth/wallet/transaction-history/transaction-history.component';
+import { WalletComponent as EthWalletComponent} from './components/eth/wallet/wallet.component';
+import { MainComponent as EthMainComponent} from './components/eth/wallet/main/main.component';
+import { TransactionHistoryComponent as EthTransactionHistoryComponent } from './components/eth/wallet/transaction-history/transaction-history.component';
+import { WalletComponent as EOSWalletComponent} from './components/eos/wallet/wallet.component';
+import { MainComponent as EOSMainComponent} from './components/eos/wallet/main/main.component';
+import { TransactionHistoryComponent as EOSTransactionHistoryComponent } from './components/eos/wallet/transaction-history/transaction-history.component';
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'eth', component: EthWalletComponent },
+  { path: 'eos', component: EOSWalletComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full'  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    WalletComponent,
+    RegisterComponent,
+    EthWalletComponent,
+    EthMainComponent,
+    EthTransactionHistoryComponent,
+    EOSWalletComponent,
+    EOSMainComponent,
+    EOSTransactionHistoryComponent,
     NavigationComponent,
     FooterComponent,
-    TransactionHistoryComponent,
     SecretPadComponent,
-    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +53,9 @@ import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, M
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [],
   bootstrap: [AppComponent]

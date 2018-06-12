@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'eth-main',
+  selector: 'eos-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })

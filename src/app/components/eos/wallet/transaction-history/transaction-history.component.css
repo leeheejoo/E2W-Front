@@ -1,4 +1,4 @@
-.eth-history {
+.eos-history {
     background: rgb(255, 255, 255);
     height: 84vh;
     text-align: center;
@@ -9,7 +9,7 @@
 }
 
 @media ( max-width: 600px ){
-    .eth-history {
+    .eos-history {
         float: none;
         width: 100%;
         background: rgb(255, 255, 255);
