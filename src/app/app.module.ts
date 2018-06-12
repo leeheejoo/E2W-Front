@@ -10,7 +10,9 @@ import { MainComponent } from './components/eth/wallet/main/main.component';
 import { TransactionHistoryComponent } from './components/eth/wallet/transaction-history/transaction-history.component';
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+
 
 
 @NgModule({
@@ -27,9 +29,13 @@ import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/mater
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

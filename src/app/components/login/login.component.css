@@ -2,7 +2,19 @@
 .login {
     background: rgb(255, 255, 255);
     height: 84vh;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 84vh;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20vw;
+    padding-right: 20vw;
+
+}
+
+.blockchain-img {
+
+    width: 250px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
 }

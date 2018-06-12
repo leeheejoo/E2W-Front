@@ -4,14 +4,14 @@
 }
 
 .navi-button {
-    margin-right: 2vw;
+    margin-right: 3vw;
 }
 
 .navi-spacer {
-    flex: 1 1 auto;
+    flex: 1;
 }
 
 .navi-icon {
-    padding: 0 14px;
-  }
+  
+}
   
