@@ -5,7 +5,7 @@ import {AlertDialogComponent as AlertDialog} from '../dialog/alert-dialog/alert-
 import { MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

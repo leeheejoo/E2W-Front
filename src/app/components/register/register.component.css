@@ -21,9 +21,37 @@
 }
 
 .blockchain-img {
-    width: 250px;
-    height: 250px;
+    width: 260px;
+    height: 260px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
 }
+
+@media ( max-width: 800px ){
+    .blockchain-img {
+        width: 220px;
+        height: 220px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+}
+
+@media ( max-width: 600px ){
+    .blockchain-img {
+        width: 180px;
+        height: 180px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+}
+
+@media ( max-height: 700px ){
+    .blockchain-img {
+        display: none;
+    }
+}
+
+

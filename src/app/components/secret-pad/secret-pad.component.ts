@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-secret-pad',
+  selector: 'secret-pad',
   templateUrl: './secret-pad.component.html',
   styleUrls: ['./secret-pad.component.css']
 })

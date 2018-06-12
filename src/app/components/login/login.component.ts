@@ -5,7 +5,7 @@ import {AlertDialogComponent as AlertDialog} from '../dialog/alert-dialog/alert-
 import { MatDialog } from '@angular/material';
 
 @Component({
-	selector: 'app-login',
+	selector: 'login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css']
 })
