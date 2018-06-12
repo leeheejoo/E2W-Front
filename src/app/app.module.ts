@@ -52,7 +52,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
