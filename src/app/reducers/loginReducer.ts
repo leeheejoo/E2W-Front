@@ -4,16 +4,16 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
 export interface loginState {
-	isLogin: boolean;
+	login: boolean;
 }
 
 export function loginReducer(state: loginState, action: Action) {
 	switch (action.type) {
 		case LOGIN:
-			return { isLogin : true };
+			return { login : true };
 
 		case LOGOUT:
-			return { isLogin : false };
+			return { login : false };
 
 		default:
 			return state;

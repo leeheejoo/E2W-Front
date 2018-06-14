@@ -14,7 +14,7 @@ import { TransactionHistoryComponent as EOSTransactionHistoryComponent } from '.
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatMenuModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountService} from './service/account.service';
@@ -61,6 +61,7 @@ const routes: Routes = [
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     HttpClientModule,
     MatDialogModule,
     RouterModule.forRoot(routes, { useHash: true }),

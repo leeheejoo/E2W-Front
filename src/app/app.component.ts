@@ -7,10 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  isLogin: boolean;
-
   constructor(){
-    this.isLogin = false;
+
   }
 
   ngOnInit(){

@@ -40,6 +40,7 @@ export class AccountService {
 					}
 					else{
 						let dialogRef = this.dialog.open(AlertDialog,{
+							minWidth: '300px',
 							data: { 
 								title:'Login', 
 								message:res['msg']
@@ -57,6 +58,7 @@ export class AccountService {
 		}else{
 
 			let dialogRef = this.dialog.open(AlertDialog,{
+				minWidth: '300px',
 				data: { 
 					title:'Login', 
 					message:'Please enter all input values ​​for login.'
@@ -78,6 +80,7 @@ export class AccountService {
 		if(email && password && secret){
 
 			dialogRef = this.dialog.open(AlertDialog,{
+				minWidth: '300px',
 				data: { 
 					title:'Sign In', 
 					message:`email: ${email}, password: ${password}, secret: ${secret}`
@@ -87,6 +90,7 @@ export class AccountService {
 		}else{
 
 			dialogRef = this.dialog.open(AlertDialog,{
+				minWidth: '300px',
 				data: { 
 					title:'Sign In', 
 					message:'Please enter all input values ​​for sign up.'

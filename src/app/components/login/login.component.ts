@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 		if(this.emailControl.invalid){
 
 			let dialogRef = this.dialog.open(AlertDialog,{
-				width: '300px',
+				minWidth: '300px',
 				data: { 
 					title:"Warning", 
 					message:'Not vaild email.'

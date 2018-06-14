@@ -12,6 +12,11 @@
 }
 
 .navi-icon {
-  
+    font-size: 4vh;
+    margin-right: 4px;
+}
+
+.navi-menu-button {
+    text-align: center;
 }
   

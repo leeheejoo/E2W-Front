@@ -1,9 +1,17 @@
 
 <mat-toolbar class ="navi" color="primary">
-        <span routerLink="/eth" class="navi-button">Ethereum</span> 
-        <span routerLink="/eos" class="navi-button">EOS</span> 
-        <span class="navi-spacer"></span> 
-        <mat-icon routerLink="/login" class="navi-icon">{{loginIcon}}</mat-icon> 
+	<span routerLink="/eth" class="navi-button">Ethereum</span> 
+	<span routerLink="/eos" class="navi-button">EOS</span> 
+	<span class="navi-spacer"></span> 
+	<button mat-icon-button  [matMenuTriggerFor]="menu" >
+		<mat-icon class="navi-icon">{{loginIcon}}</mat-icon> 
+	</button>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item routerLink="/login" class="navi-menu-button" *ngIf="isLogIn == false; else btnLogOut">LogIn</button>
+		<ng-template #btnLogOut>
+			<button mat-menu-item routerLink="/login" (click)="logOut($event)" class="navi-menu-button">LogOut</button>
+		</ng-template>
+	</mat-menu>
 </mat-toolbar>
 
 
