@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,6 +23,8 @@ import { EosService } from './service/eos.service';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 import { AuthGuard } from './utils/AuthGuard';
 import { JwtInterceptor } from './utils/jwtInterceptor';
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './reducers/loginReducer';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -62,7 +63,8 @@ const routes: Routes = [
     MatInputModule,
     HttpClientModule,
     MatDialogModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true }),
+    StoreModule.forRoot({ 'loginReducer' : loginReducer })
   ],
   providers: [
     AccountService,

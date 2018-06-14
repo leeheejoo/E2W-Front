@@ -1,15 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { LOGIN, LOGOUT, loginState } from '../../reducers/loginReducer';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+	selector: 'navigation',
+	templateUrl: './navigation.component.html',
+	styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+	loginIcon : string = "lock";
+	loginOb : Observable<boolean>;
 
-  ngOnInit() {
-  }
+  	constructor(private store: Store<loginState>) {
+		this.loginOb = this.store.select('loginReducer');
+		this.loginOb.subscribe(state => {
+
+		if(state == true)
+			this.loginIcon = "home";
+		else
+			this.loginIcon = "face";
+
+		})
+  	}
+
+	ngOnInit() {
+
+	}
 
 }

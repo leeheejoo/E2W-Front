@@ -4,13 +4,15 @@ import { AlertDialogComponent as AlertDialog } from '../components/dialog/alert-
 import { MatDialog } from '@angular/material';
 import { Config } from '../configs/config';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { LOGIN, LOGOUT, loginState } from '../reducers/loginReducer';
 
 @Injectable({
   	providedIn: 'root'
 })
 export class AccountService {
 
-	constructor(private http: HttpClient, public router: Router, private dialog: MatDialog) { 
+	constructor(private http: HttpClient, public router: Router, private store: Store<loginState>, private dialog: MatDialog) { 
 
 	}
 
@@ -33,6 +35,7 @@ export class AccountService {
 
 						this.router.navigate(['eth']);
 
+						this.store.dispatch({ type: LOGIN });
 						//console.log(user);
 					}
 					else{
@@ -65,6 +68,7 @@ export class AccountService {
 
 	logout() {
 		localStorage.removeItem('e2w-currentUser');
+		this.store.dispatch({ type: LOGOUT });
 	}
 
   	regster(email:string, password:string, secret:string){
