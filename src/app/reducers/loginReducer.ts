@@ -7,7 +7,11 @@ export interface loginState {
 	login: boolean;
 }
 
-export function loginReducer(state: loginState, action: Action) {
+export const initialState: loginState = {
+	login:false,
+};
+
+export function loginReducer(state: loginState = initialState, action: Action) {
 	switch (action.type) {
 		case LOGIN:
 			return { login : true };

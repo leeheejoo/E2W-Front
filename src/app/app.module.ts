@@ -25,6 +25,7 @@ import { AuthGuard } from './utils/AuthGuard';
 import { JwtInterceptor } from './utils/jwtInterceptor';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './reducers/loginReducer';
+import { ethReducer } from './reducers/ethReducer';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -65,7 +66,10 @@ const routes: Routes = [
     HttpClientModule,
     MatDialogModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    StoreModule.forRoot({ 'loginReducer' : loginReducer })
+    StoreModule.forRoot({ 
+      'loginReducer' : loginReducer, 
+      'ethReducer' : ethReducer
+   })
   ],
   providers: [
     AccountService,

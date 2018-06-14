@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
 	loginOb : Observable<loginState>;
 	isLogIn : boolean = false;
 
-  	constructor(private accountService : AccountService,private store: Store<loginState>) {
+  	constructor(private accountService : AccountService, private store: Store<loginState>) {
 
 		this.loginOb = this.store.select('loginReducer');
 
