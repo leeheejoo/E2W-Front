@@ -74,34 +74,51 @@ export class AccountService {
 	}
 
   	regster(email:string, password:string, secret:string){
-    
-		let dialogRef;
 
 		if(email && password && secret){
 
-			dialogRef = this.dialog.open(AlertDialog,{
-				minWidth: '300px',
-				data: { 
-					title:'Sign In', 
-					message:`email: ${email}, password: ${password}, secret: ${secret}`
-				} 
-			});
+			return this.http.post(`${Config.apiServer}${Config.apiVersion}/register`, { 'email': email, password: password, secret }).subscribe(
+				res => {
+				
+				  	if(res['code'] == 0){
+						
+						this.store.dispatch({ type: LOGIN });
+						this.login(email,password);
+						
+					}
+					else{
+						let dialogRef = this.dialog.open(AlertDialog,{
+							minWidth: '300px',
+							data: { 
+								title:'Sign Up', 
+								message:res['msg']
+							} 
+						});
+					}
+				 
+				},
+				err => {
+				  	console.log("AccountService sign-up error occured");
+				  	console.log(err);
+				}
+			);
 
 		}else{
 
-			dialogRef = this.dialog.open(AlertDialog,{
+			let dialogRef = this.dialog.open(AlertDialog,{
 				minWidth: '300px',
 				data: { 
 					title:'Sign In', 
 					message:'Please enter all input values ​​for sign up.'
 				} 
 			})
+/*
+			dialogRef.afterClosed().subscribe(result => {
+				if (result == 'confirm') {
+	
+				}
+			});
+*/
 		}
-
-		dialogRef.afterClosed().subscribe(result => {
-			if (result == 'confirm') {
-				console.log('Unregistered');
-			}
-		});
   	}
 }
