@@ -8,8 +8,10 @@ export class AuthGuard implements CanActivate {
  
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (localStorage.getItem('currentUser')) {
-            // logged in so return true
+        let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+        let tmCurrent = new Date();
+
+        if (user && user.exp > tmCurrent.getTime()) {
             return true;
         }
  

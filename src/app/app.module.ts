@@ -16,13 +16,14 @@ import { SecretPadComponent } from './components/secret-pad/secret-pad.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountService} from './service/account.service';
 import { EthService } from './service/eth.service';
 import { EosService } from './service/eos.service';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 import { AuthGuard } from './utils/AuthGuard';
+import { JwtInterceptor } from './utils/jwtInterceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -67,7 +68,12 @@ const routes: Routes = [
     AccountService,
     EthService,
     EosService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   entryComponents: [
     AlertDialogComponent
