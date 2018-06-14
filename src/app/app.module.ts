@@ -14,21 +14,22 @@ import { MainComponent as EOSMainComponent} from './components/eos/wallet/main/m
 import { TransactionHistoryComponent as EOSTransactionHistoryComponent } from './components/eos/wallet/transaction-history/transaction-history.component';
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import {AccountService} from './service/account.service';
-import {EthService} from './service/eth.service';
-import {EosService} from './service/eos.service';
+import { AccountService} from './service/account.service';
+import { EthService } from './service/eth.service';
+import { EosService } from './service/eos.service';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
+import { AuthGuard } from './utils/AuthGuard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'eth', component: EthWalletComponent },
-  { path: 'eos', component: EOSWalletComponent },
+  { path: 'eth', component: EthWalletComponent, canActivate:[AuthGuard]},
+  { path: 'eos', component: EOSWalletComponent, canActivate:[AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full'  }
 ];
 
@@ -65,7 +66,8 @@ const routes: Routes = [
   providers: [
     AccountService,
     EthService,
-    EosService
+    EosService,
+    AuthGuard
   ],
   entryComponents: [
     AlertDialogComponent
