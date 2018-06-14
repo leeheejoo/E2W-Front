@@ -7,9 +7,10 @@
 		<mat-icon class="navi-icon">{{loginIcon}}</mat-icon> 
 	</button>
 	<mat-menu #menu="matMenu">
-		<button mat-menu-item routerLink="/login" class="navi-menu-button" *ngIf="isLogIn == false; else btnLogOut">LogIn</button>
-		<ng-template #btnLogOut>
-			<button mat-menu-item routerLink="/login" (click)="logOut($event)" class="navi-menu-button">LogOut</button>
+		<button mat-menu-item routerLink="/login" (click)="logOut($event)" class="navi-menu-button" *ngIf="isLogIn; else btnLogIn">LogOut</button>
+		<ng-template #btnLogIn>
+			<button mat-menu-item routerLink="/login" class="navi-menu-button">LogIn</button>
+			<button mat-menu-item routerLink="/register" class="navi-menu-button">Sign Up</button>
 		</ng-template>
 	</mat-menu>
 </mat-toolbar>

@@ -15,7 +15,7 @@ export class EthService {
 
 	getBalance(email) {
 
-		console.log(email);
+		//console.log(email);
 
 		if(email) {
 
@@ -27,7 +27,7 @@ export class EthService {
 					  if(res['code'] == 0 && res['data']){
 					
 						let balance = res['data']['balance'];
-						console.log(balance);
+						//console.log(balance);
 						this.store.dispatch({ type: BALACNE,
 							'balance':balance,
 						});
