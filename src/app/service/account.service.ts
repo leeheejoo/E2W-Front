@@ -6,6 +6,7 @@ import { Config } from '../configs/config';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LOGIN, LOGOUT, loginState } from '../reducers/loginReducer';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   	providedIn: 'root'
@@ -20,7 +21,10 @@ export class AccountService {
 
 		if(email && password){
 
-			return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: password }).subscribe(
+			let encyptedPassword = CryptoJS.SHA256(password).toString();
+			//console.log(encyptedPassword);
+
+			return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: encyptedPassword}).subscribe(
 				res => {
 				
 				  	if(res['code'] == 0 && res['data']){
@@ -77,14 +81,17 @@ export class AccountService {
 
 		if(email && password && secret){
 
-			return this.http.post(`${Config.apiServer}${Config.apiVersion}/register`, { 'email': email, password: password, secret }).subscribe(
+			let encyptedPassword = CryptoJS.SHA256(password).toString();
+			let encyptedSecret = CryptoJS.SHA256(secret).toString();
+
+			return this.http.post(`${Config.apiServer}${Config.apiVersion}/register`, { 'email': email, password: encyptedPassword, secret: encyptedSecret }).subscribe(
 				res => {
 				
 				  	if(res['code'] == 0){
 						
 						this.store.dispatch({ type: LOGIN });
 						this.login(email,password);
-						
+
 					}
 					else{
 						let dialogRef = this.dialog.open(AlertDialog,{
