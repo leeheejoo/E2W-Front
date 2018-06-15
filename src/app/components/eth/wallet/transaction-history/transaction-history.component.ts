@@ -22,7 +22,7 @@ export class TransactionHistoryComponent implements OnInit {
 
 			if(state){	
 				this.transactionHistory = state.transactionHistory;
-				//console.log(this.transactionHistory);
+				console.log(this.transactionHistory);
 			}
 
 		});

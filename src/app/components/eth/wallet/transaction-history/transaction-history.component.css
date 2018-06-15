@@ -2,11 +2,18 @@
     background: rgb(255, 255, 255);
     height: 84vh;
     text-align: center;
-    vertical-align: middle;
-    float: right;
+    float: left;
     width: 50%;
-    overflow-y: scroll;
+    padding-top:1px;
+    padding-bottom:1px;
 }
+
+.eth-history-list {
+    height: 75vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
 
 @media ( max-width: 800px ){
     .eth-history {
@@ -15,7 +22,55 @@
         background: rgb(255, 255, 255);
         height: 92vh;
         text-align: center;
-        vertical-align: middle;
-        overflow-y: scroll;
+        padding-top:1px;
+        padding-bottom:1px;
     }
+
+    .eth-history-list {
+        height: 83vh;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+    
+}
+
+.eth-history-header {
+    font-size: 18px;
+    text-align: center;
+}
+
+.eth-history-header-time {
+    width: 20%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.eth-history-header-to {
+    width: 35%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.eth-history-header-blocknumber {
+    width: 15%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+    line-height:1.3em
+}
+
+.eth-history-header-value {
+    width: 15%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.eth-history-header-fees {
+    width: 15%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
 }
