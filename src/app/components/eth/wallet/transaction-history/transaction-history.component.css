@@ -5,9 +5,10 @@
     vertical-align: middle;
     float: right;
     width: 50%;
+    overflow-y: scroll;
 }
 
-@media ( max-width: 600px ){
+@media ( max-width: 800px ){
     .eth-history {
         float: none;
         width: 100%;
@@ -15,5 +16,6 @@
         height: 92vh;
         text-align: center;
         vertical-align: middle;
+        overflow-y: scroll;
     }
 }

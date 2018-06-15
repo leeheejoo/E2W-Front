@@ -28,7 +28,7 @@
     margin-bottom: 30px;
 }
 
-@media ( max-width: 800px ){
+@media ( max-width: 1000px ){
     .blockchain-img {
         width: 220px;
         height: 220px;
@@ -38,7 +38,7 @@
     }
 }
 
-@media ( max-width: 600px ){
+@media ( max-width: 800px ){
     .blockchain-img {
         width: 180px;
         height: 180px;

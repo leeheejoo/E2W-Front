@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { BALACNE, ethState } from '../../../../reducers/ethReducer';
+import { ethState } from '../../../../reducers/ethReducer';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 
 		if(user){
-			this.ethService.getBalance(user.email);
+			this.ethService.getEthBalance(user.email);
 			this.email = user.email;
 			this.address = user.ethAddress;
 		}
