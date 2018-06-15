@@ -2,8 +2,6 @@
     background: rgb(255, 255, 255);
     height: 84vh;
     text-align: center;
-    vertical-align: middle;
-    line-height: 84vh;   
     float: left;
     width: 50%;
 }
@@ -15,7 +13,37 @@
         background: rgb(255, 255, 255);
         height: 92vh;
         text-align: center;
-        vertical-align: middle;
-        line-height: 92vh;   
     }
+}
+
+.eth-qrcode{
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8vh;
+    margin-bottom: -5vh;
+}
+
+.eth-address{
+    font-size: 20px;
+    font-weight: 400;
+    overflow-wrap: break-word;
+    color: slategrey;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.eth-balance{
+    font-size: 26px;
+    font-weight: 500;
+    overflow-wrap: break-word;
+    color: slategrey;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+}
+
+.eth-transfer-button{
+    font-size: 15px;
+    margin-top: 2vh;
 }

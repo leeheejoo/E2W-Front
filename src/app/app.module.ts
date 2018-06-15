@@ -14,7 +14,7 @@ import { TransactionHistoryComponent as EOSTransactionHistoryComponent } from '.
 import { SecretPadComponent } from './components/secret-pad/secret-pad.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatMenuModule, MatDividerModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountService} from './service/account.service';
@@ -26,6 +26,7 @@ import { JwtInterceptor } from './utils/jwtInterceptor';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './reducers/loginReducer';
 import { ethReducer } from './reducers/ethReducer';
+import { QRCodeModule } from 'angular2-qrcode';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -63,8 +64,10 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
+    MatDividerModule,
     HttpClientModule,
     MatDialogModule,
+    QRCodeModule,
     RouterModule.forRoot(routes, { useHash: true }),
     StoreModule.forRoot({ 
       'loginReducer' : loginReducer, 

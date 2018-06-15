@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class MainComponent implements OnInit {
 
 	balance : Number = 0;
+	address : string;
 	ethOb : Observable<ethState>;
 
   	constructor(private ethService : EthService, private store: Store<ethState>) {
@@ -30,11 +31,14 @@ export class MainComponent implements OnInit {
   	ngOnInit() {
 
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-		
+
 		if(user){
 			this.ethService.getBalance(user.email);
+			this.address = user.ethAddress;
 		}
-
   	}
 
+	transfer(event) {
+
+	}
 }

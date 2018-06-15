@@ -1,3 +1,8 @@
 <div class="eth-main">
-    balance {{balance}}
+    <div class="eth-qrcode">
+        <qr-code [value]="address" [size]="220" [level]="'L'"></qr-code>
+    </div>
+    <p class="eth-address"> {{address}} </p>
+    <p class="eth-balance"> {{balance}} ETH</p>
+    <button mat-raised-button color="primary" class="eth-transfer-button" (click)="transfer($event)">Transfer</button>
 </div>
