@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
 
 	balance : Number = 0;
 	address : string;
+	email : string;
 	ethOb : Observable<ethState>;
 
   	constructor(private ethService : EthService, private store: Store<ethState>) {
@@ -34,6 +35,7 @@ export class MainComponent implements OnInit {
 
 		if(user){
 			this.ethService.getBalance(user.email);
+			this.email = user.email;
 			this.address = user.ethAddress;
 		}
   	}
