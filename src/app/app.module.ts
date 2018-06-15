@@ -90,7 +90,7 @@ const routes: Routes = [
 export class AppModule { 
 
   constructor(){
-    localStorage.removeItem('e2w-currentUser');
+
   }
   
 }

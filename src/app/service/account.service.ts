@@ -34,6 +34,7 @@ export class AccountService {
 							'exp': res['data']['exp']*1000,
 							'token': res['data']['token'],
 							'ethAddress': res['data']['ethAddress'],
+							'lastUrl':''
 						}
 
 						localStorage.setItem('e2w-currentUser', JSON.stringify(user));

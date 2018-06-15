@@ -22,6 +22,13 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+		if(user) {
+			user.lastUrl = '/login';
+			localStorage.setItem('e2w-currentUser',JSON.stringify(user));
+		}
+
 	}
 
 	submit(event) {

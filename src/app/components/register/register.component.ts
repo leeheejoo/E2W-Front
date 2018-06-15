@@ -23,6 +23,11 @@ export class RegisterComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+		if(user) {
+			user.lastUrl = '/register';
+			localStorage.setItem('e2w-currentUser',JSON.stringify(user));
+		}
 	}
 
 	submit(event) {
