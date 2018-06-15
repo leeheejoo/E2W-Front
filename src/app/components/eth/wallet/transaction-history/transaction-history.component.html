@@ -1,34 +1,23 @@
 
 
 <div class="eth-history">
-     <mat-toolbar class="eth-history-header" color="primary">
-        <span class="eth-history-header-time">Time</span> 
-        <span class="eth-history-header-to">To</span> 
-        <span class="eth-history-header-blocknumber">Block<br>Number</span> 
-        <span class="eth-history-header-value">Value</span> 
-        <span class="eth-history-header-fees">Fees</span> 
+    <mat-toolbar class="eth-history-header" color="primary">
+        <span class="eth-history-header-blocknumber">BlockNumber</span> 
+        <span class="eth-history-header-time-to">Time<br>To (Address)</span> 
+        <span class="eth-history-header-value-fees">Value<br>Fees</span> 
     </mat-toolbar>
-    <mat-list class="eth-history-list">
-        <mat-list-item> Pepper PepperPepperPepperPepperPepperPepperPepperPepperPepperPepperPepperPepperPepperPepper</mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
+    <mat-list class="eth-history-list" >
+        <mat-list-item *ngFor="let th of transactionHistory"> 
+            <p class="eth-history-item-blocknumber"> {{th.blockNumber}} </p>
+            <div class="eth-history-item-time-to">
+                <p mat-line> {{th.time}} </p>
+                <p mat-line> {{th.to}} </p>
+            </div>
+            <div class="eth-history-item-value-fees">
+                <p mat-line> {{th.value}} ETH</p>
+                <p mat-line> {{th.fees}} ETH</p>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
     </mat-list>
-</div>
+ </div>

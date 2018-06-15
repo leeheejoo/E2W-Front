@@ -69,6 +69,7 @@ export class EthService {
 								t.to,
 								t.transactionIndex,
 								t.value,
+								t.fees,
 								t.v,
 								t.r,
 								t.s,

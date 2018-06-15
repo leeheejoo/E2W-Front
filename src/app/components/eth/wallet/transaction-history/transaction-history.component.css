@@ -40,38 +40,48 @@
     text-align: center;
 }
 
-.eth-history-header-time {
-    width: 20%;
-    font-size: 16px;
-    text-align: center;
-    overflow-wrap: break-word;
-}
-
-.eth-history-header-to {
-    width: 35%;
-    font-size: 16px;
-    text-align: center;
-    overflow-wrap: break-word;
-}
-
 .eth-history-header-blocknumber {
     width: 15%;
     font-size: 16px;
     text-align: center;
     overflow-wrap: break-word;
+    line-height:1.3em;
+}
+
+.eth-history-header-time-to {
+    width: 55%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+    line-height:1.6em;
+}
+
+.eth-history-header-value-fees {
+    width: 30%;
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: break-word;
+    line-height:1.6em;
+}
+
+.eth-history-item-blocknumber {
+    width: 15%;
+    font-size: 14px;
+    text-align: center;
+    overflow-wrap: break-word;
     line-height:1.3em
 }
 
-.eth-history-header-value {
-    width: 15%;
-    font-size: 16px;
+.eth-history-item-time-to {
+    width: 55%;
+    font-size: 14px;
     text-align: center;
     overflow-wrap: break-word;
 }
 
-.eth-history-header-fees {
-    width: 15%;
-    font-size: 16px;
+.eth-history-item-value-fees {
+    width: 30%;
+    font-size: 14px;
     text-align: center;
     overflow-wrap: break-word;
 }

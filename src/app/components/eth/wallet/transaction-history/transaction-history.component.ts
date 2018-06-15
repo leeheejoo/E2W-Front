@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
 import { TransactionHistory, ethState } from '../../../../reducers/ethReducer';
@@ -14,7 +14,7 @@ export class TransactionHistoryComponent implements OnInit {
 	ethOb : Observable<ethState>;
 	transactionHistory : Array<TransactionHistory>;
 
-	constructor(private ethService : EthService, private store: Store<ethState>) {
+	constructor(private ethService : EthService, private store: Store<ethState>, private elementRef: ElementRef, private renderer: Renderer2) {
 
 		this.ethOb = this.store.select('ethReducer');
 
@@ -22,7 +22,7 @@ export class TransactionHistoryComponent implements OnInit {
 
 			if(state){	
 				this.transactionHistory = state.transactionHistory;
-				console.log(this.transactionHistory);
+				//console.log(this.transactionHistory);
 			}
 
 		});
@@ -36,5 +36,4 @@ export class TransactionHistoryComponent implements OnInit {
 			this.ethService.getEthTransactionHistory(user.email);
 		}
 	}
-
 }

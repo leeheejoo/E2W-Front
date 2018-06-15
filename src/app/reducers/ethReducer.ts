@@ -28,10 +28,11 @@ export class TransactionHistory {
 		public to:string, 
 		public transactionIndex:Number, 
 		public value:string, 
+		public fees:string,
 		public v:string,
 		public r:string,
 		public s:string,
-		public time:Number ) {
+		public time:string ) {
 
 	}
 }
