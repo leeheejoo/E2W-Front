@@ -12,6 +12,7 @@
     height: 75vh;
     overflow-y: visible;
     overflow-x: hidden;
+    overflow-wrap: break-word;
 }
 
 
@@ -30,6 +31,7 @@
         height: 83vh;
         overflow-y: visible;
         overflow-x: hidden;
+        overflow-wrap: break-word;
     }
     
 }
@@ -37,51 +39,40 @@
 .eth-history-header {
     height: 8vh;
     font-size: 18px;
-    text-align: center;
+    line-height:1.6em;
 }
 
 .eth-history-header-blocknumber {
     width: 15%;
     font-size: 16px;
-    text-align: center;
-    overflow-wrap: break-word;
-    line-height:1.3em;
 }
 
-.eth-history-header-time-to {
+.eth-history-header-time-address {
     width: 55%;
     font-size: 16px;
-    text-align: center;
-    overflow-wrap: break-word;
-    line-height:1.6em;
+
 }
 
 .eth-history-header-value-fees {
     width: 30%;
     font-size: 16px;
-    text-align: center;
-    overflow-wrap: break-word;
-    line-height:1.6em;
 }
 
 .eth-history-item-blocknumber {
     width: 15%;
     font-size: 14px;
-    text-align: center;
-    overflow-wrap: break-word;
-    line-height:1.3em
 }
 
-.eth-history-item-time-to {
-    width: 55%;
+.eth-history-item-arrow{
+    width: 5%;
+}
+
+.eth-history-item-time-address {
+    width: 50%;
     font-size: 14px;
-    text-align: center;
-    overflow-wrap: break-word;
 }
 
 .eth-history-item-value-fees {
     width: 30%;
     font-size: 14px;
-    text-align: center;
-    overflow-wrap: break-word;
 }

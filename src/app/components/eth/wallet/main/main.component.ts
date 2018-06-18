@@ -49,7 +49,15 @@ export class MainComponent implements OnInit {
 		});
 	  
 		dialogRef.afterClosed().subscribe(result => {
-				console.log(result);
+
+			// test address : 0x8fb03b6c7ffee7af1d986327350718ce9c68ede0
+			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+			if(user) {
+				let email = user.email;
+				this.ethService.transfer(email, result.to, result.ether, result.gasLimit, result.gasPrice, result.secret);
+			}
+
+			console.log(result);
 		});
 	}
 }

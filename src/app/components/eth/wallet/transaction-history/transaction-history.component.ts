@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class TransactionHistoryComponent implements OnInit {
 
 	ethOb : Observable<ethState>;
+	userAddress : string;
 	transactionHistory : Array<TransactionHistory>;
 
 	constructor(private ethService : EthService, private store: Store<ethState>, private elementRef: ElementRef, private renderer: Renderer2) {
@@ -33,6 +34,7 @@ export class TransactionHistoryComponent implements OnInit {
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 
 		if(user){
+			this.userAddress = user.ethAddress;
 			this.ethService.getEthTransactionHistory(user.email);
 		}
 	}

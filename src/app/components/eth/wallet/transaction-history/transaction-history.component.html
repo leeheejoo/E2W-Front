@@ -1,18 +1,26 @@
-
-
 <div class="eth-history">
     <mat-toolbar class="eth-history-header" color="primary">
         <span class="eth-history-header-blocknumber">BlockNumber</span> 
-        <span class="eth-history-header-time-to">Time<br>To (Address)</span> 
+        <span class="eth-history-header-time-address">Time<br>Address</span> 
         <span class="eth-history-header-value-fees">Value<br>Fees</span> 
     </mat-toolbar>
     <mat-list class="eth-history-list" >
         <mat-list-item *ngFor="let th of transactionHistory"> 
             <p class="eth-history-item-blocknumber"> {{th.blockNumber}} </p>
-            <div class="eth-history-item-time-to">
+            <mat-icon class="eth-history-item-arrow" *ngIf="userAddress == th.to; else toArrow">arrow_back</mat-icon> 
+            <ng-template #toArrow>
+                <mat-icon class="eth-history-item-arrow">arrow_forward</mat-icon> 
+            </ng-template>
+            <div class="eth-history-item-time-address" *ngIf="userAddress == th.to; else toTimeAddress">
                 <p mat-line> {{th.time}} </p>
-                <p mat-line> {{th.to}} </p>
+                <p mat-line > {{th.from}} </p>
             </div>
+            <ng-template #toTimeAddress>
+                <div class="eth-history-item-time-address"> 
+                    <p mat-line> {{th.time}} </p>
+                    <p mat-line> {{th.to}} </p>
+                </div>
+            </ng-template>
             <div class="eth-history-item-value-fees">
                 <p mat-line> {{th.value}} ETH</p>
                 <p mat-line> {{th.fees}} ETH</p>

@@ -4,7 +4,7 @@
 		<ul>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput [(ngModel)]="to"  name="to" placeholder="Enter the address to receive the Ether.">
+					<input matInput [(ngModel)]="to"  name="to" placeholder="Enter the address to receive the ether.">
 				</mat-form-field>
 			</li>
 			<li>
@@ -19,12 +19,12 @@
 			</li>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput [(ngModel)]="gasPrace"  name="gasPrace" [type]="'number'" placeholder="Enter an gas prace value for transfer.">
+					<input matInput [(ngModel)]="gasPrace"  name="gasPrice" [type]="'number'" placeholder="Enter an gas prace value for transfer.">
 				</mat-form-field>	
 			</li>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput placeholder="Enter your secret"  name="secert" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="password" >
+					<input matInput placeholder="Enter your secret"  name="secret" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="password" >
 					<mat-icon matSuffix (click)="secretHide = !secretHide">{{secretHide ? 'visibility' : 'visibility_off'}}</mat-icon>
 				</mat-form-field>		
 			</li>
