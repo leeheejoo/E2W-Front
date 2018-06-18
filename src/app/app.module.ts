@@ -22,6 +22,7 @@ import { AccountService} from './service/account.service';
 import { EthService } from './service/eth.service';
 import { EosService } from './service/eos.service';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
+import { TransferEthDialogComponent } from './components/dialog/transfer-eth-dialog/transfer-eth-dialog.component';
 import { AuthGuard } from './utils/AuthGuard';
 import { JwtInterceptor } from './utils/jwtInterceptor';
 import { StoreModule } from '@ngrx/store';
@@ -53,6 +54,7 @@ const routes: Routes = [
     FooterComponent,
     SecretPadComponent,
     AlertDialogComponent,
+    TransferEthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ const routes: Routes = [
     }
   ],
   entryComponents: [
-    AlertDialogComponent
+    AlertDialogComponent,
+    TransferEthDialogComponent
   ],
   bootstrap: [AppComponent]
 })

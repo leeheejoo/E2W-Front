@@ -1,0 +1,37 @@
+<h2 matDialogTitle>Transfer Ether</h2>
+<mat-dialog-content>
+	<form #modalForm="ngForm">
+		<ul>
+			<li>
+				<mat-form-field class="transfer-eth-dialog-input">
+					<input matInput [(ngModel)]="to"  name="to" placeholder="Enter the address to receive the Ether.">
+				</mat-form-field>
+			</li>
+			<li>
+				<mat-form-field class="transfer-eth-dialog-input">
+					<input matInput [(ngModel)]="ether"  name="ether" [type]="'number'" placeholder="Enter an Ether value to transfer.">
+				</mat-form-field>
+			</li>
+			<li>
+				<mat-form-field class="transfer-eth-dialog-input">
+					<input matInput [(ngModel)]="gasLimit"  name="gasLimit" [type]="'number'" placeholder="Enter an gas limit value for transfer.">
+				</mat-form-field>		
+			</li>
+			<li>
+				<mat-form-field class="transfer-eth-dialog-input">
+					<input matInput [(ngModel)]="gasPrace"  name="gasPrace" [type]="'number'" placeholder="Enter an gas prace value for transfer.">
+				</mat-form-field>	
+			</li>
+			<li>
+				<mat-form-field class="transfer-eth-dialog-input">
+					<input matInput placeholder="Enter your secret"  name="secert" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="password" >
+					<mat-icon matSuffix (click)="secretHide = !secretHide">{{secretHide ? 'visibility' : 'visibility_off'}}</mat-icon>
+				</mat-form-field>		
+			</li>
+		</ul>
+	</form>
+</mat-dialog-content>	
+<mat-dialog-actions align="end">
+	<button mat-button [mat-dialog-close]="modalForm.value" color="primary">Transfer</button>
+	<button mat-button matDialogClose="cancel" color="primary">Close</button>
+</mat-dialog-actions>
