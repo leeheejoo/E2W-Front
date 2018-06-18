@@ -5,7 +5,7 @@
         <span class="eth-history-header-value-fees">Value<br>Fees</span> 
     </mat-toolbar>
     <mat-list class="eth-history-list" >
-        <mat-list-item *ngFor="let th of transactionHistory"> 
+        <mat-list-item *ngFor="let th of transactionHistory" [ngStyle]="{'color': th.blockNumber == '???' ? 'red' : '#444444'}"> 
             <p class="eth-history-item-blocknumber"> {{th.blockNumber}} </p>
             <mat-icon class="eth-history-item-arrow" *ngIf="userAddress == th.to; else toArrow">arrow_back</mat-icon> 
             <ng-template #toArrow>

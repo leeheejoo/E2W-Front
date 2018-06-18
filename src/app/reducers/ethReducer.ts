@@ -46,6 +46,20 @@ export class EthTransactionHistoryAction implements Action {
 	}
 }
 
+////////////////////////////////////////////////
+
+
+export const ETH_TRANSFER : string = 'ETH_TRANSFER';
+
+export class EthTransferAction implements Action {
+
+	readonly type = ETH_TRANSFER
+
+	constructor(public transaction: TransactionHistory) {
+
+	}
+}
+
 //////////////////////////////////////////
 
 export interface ethState {
@@ -64,8 +78,33 @@ export function ethReducer(state: ethState = initialState, action) {
 		case ETH_BALACNE:
 			return { balance : action.balance, transactionHistory : state.transactionHistory  };
 
-		case ETH_TRANSACTION_HISTORY:
+		case ETH_TRANSACTION_HISTORY: {
+
+			/*
+			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+			if(user){
+				for(let i=0; i< user.uncommitedTransfers.length; i++){
+					action.transactionHistory.unshift(user.uncommitedTransfers[i]); 
+				}
+			}
+			*/
+	
 			return { balance : state.balance, transactionHistory : action.transactionHistory };
+		}
+
+		case ETH_TRANSFER:{
+
+			/*
+			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+			if(user) {
+				user.uncommitedTransfers.push(action.transaction);
+				localStorage.setItem('e2w-currentUser',JSON.stringify(user));
+			}
+			state.transactionHistory.unshift(action.transaction);
+			*/
+
+			return { balance : state.balance, transactionHistory : state.transactionHistory };
+		}
 
 		default:
 			return state;
