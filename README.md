@@ -1,6 +1,6 @@
 # E2WFront
 
-This is Ethereum and EOS Wallet Backend.
+This is Ethereum and EOS Wallet Front.
 
 ## server build
 
