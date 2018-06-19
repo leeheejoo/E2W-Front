@@ -10,8 +10,8 @@ export class TransferEthDialogComponent implements OnInit {
 
 	to : string;
 	ether : Number;
-	gasLimit : Number;
-	gasPrace : Number;
+	gasLimit : Number = 22000;
+	gasPrace : Number = 80;
 	secret : string;
 	secretHide : boolean = true;
 	

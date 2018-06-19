@@ -1,21 +1,27 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { TransactionHistory, ethState } from '../../../../reducers/ethReducer';
-import { Observable } from 'rxjs';
+import { TransactionHistory, ethState, ETH_TRANSFER_COMMITED } from '../../../../reducers/ethReducer';
+import { Observable, Subject } from 'rxjs';
+import { map } from "rxjs/operators";
+import { Config } from '../../../../configs/config'
+import { WebsocketService, Message } from '../../../../service/websocket.service';
+
 
 @Component({
 	selector: 'eth-transaction-history',
 	templateUrl: './transaction-history.component.html',
-	styleUrls: ['./transaction-history.component.css']
+	styleUrls: ['./transaction-history.component.css'],
+	providers: [WebsocketService]
 })
 export class TransactionHistoryComponent implements OnInit {
 
 	ethOb : Observable<ethState>;
 	userAddress : string;
 	transactionHistory : Array<TransactionHistory>;
+	e2wServer: Subject<Message>;
 
-	constructor(private ethService : EthService, private store: Store<ethState>, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(private ethService : EthService, wsService: WebsocketService, private store: Store<ethState>, private elementRef: ElementRef, private renderer: Renderer2) {
 
 		this.ethOb = this.store.select('ethReducer');
 
@@ -24,6 +30,46 @@ export class TransactionHistoryComponent implements OnInit {
 			if(state){	
 				this.transactionHistory = state.transactionHistory;
 				//console.log(this.transactionHistory);
+			}
+
+		});
+
+		this.e2wServer = <Subject<Message>>wsService
+		.connect(Config.wsServer)
+		.pipe(
+			map((response: MessageEvent): Message => {
+				//console.log(response.data);
+				let msg = JSON.parse(response.data);
+				return msg;
+			})
+		);
+
+		this.e2wServer.subscribe(msg => {
+
+			if(msg.type == 'getEmail'){
+
+				let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+				if(user){
+					this.e2wServer.next({
+						type : 'myEmail',
+						data: {
+							email:user.email
+						}
+					});	
+				}
+			} else 	if(msg.type == 'ethTransferCommited'){
+
+				console.log(msg);
+
+				let commitedTransfer = {
+					blockNumber: msg.data.blockNumber,
+					time: msg.data.time,
+					to: msg.data.to,
+					value: msg.data.value,
+					fees:msg.data.fees,
+				};
+	
+				this.store.dispatch({ type: ETH_TRANSFER_COMMITED, 'transaction':commitedTransfer });
 			}
 
 		});
@@ -37,5 +83,12 @@ export class TransactionHistoryComponent implements OnInit {
 			this.userAddress = user.ethAddress;
 			this.ethService.getEthTransactionHistory(user.email);
 		}
+	}
+
+	ngOnDestroy() {
+		this.e2wServer.next({
+			type :'close',
+			data: {}
+		});
 	}
 }

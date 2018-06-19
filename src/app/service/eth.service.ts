@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from '../configs/config';
 import { Store } from '@ngrx/store';
-import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_TRANSFER, TransactionHistory, ethState } from '../reducers/ethReducer';
+import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_TRANSFER_COMMITED, TransactionHistory, ethState } from '../reducers/ethReducer';
 import { AlertDialogComponent as AlertDialog } from '../components/dialog/alert-dialog/alert-dialog.component';
 import { MatDialog } from '@angular/material';
 import * as CryptoJS from 'crypto-js';
@@ -103,14 +103,14 @@ export class EthService {
 
 		if(email && to && value && gasLimit && gasPrice && secret) {
 
-			//let encyptedSecret = CryptoJS.SHA256(secret).toString();
-			let encyptedSecret = secret;
+			let encyptedSecret = CryptoJS.SHA256(secret).toString();
+			//let encyptedSecret = secret;
 
 			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/transfer`, { 'email': email, 'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
 				res => {
 
 				  	if(res['code'] == 0){
-
+/*
 						let currentTime = new Date;
 
 						let uncommitedTransfer = {
@@ -121,7 +121,8 @@ export class EthService {
 							fees:'???',
 						};
 			
-						this.store.dispatch({ type: ETH_TRANSFER, 'transaction':uncommitedTransfer });
+						this.store.dispatch({ type: ETH_TRANSFER_COMMITED, 'transaction':uncommitedTransfer });
+*/
 					}
 					else{
 						let dialogRef = this.dialog.open(AlertDialog,{

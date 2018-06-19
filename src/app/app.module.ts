@@ -21,6 +21,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountService} from './service/account.service';
 import { EthService } from './service/eth.service';
 import { EosService } from './service/eos.service';
+import { WebsocketService } from './service/websocket.service';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 import { TransferEthDialogComponent } from './components/dialog/transfer-eth-dialog/transfer-eth-dialog.component';
 import { AuthGuard } from './utils/AuthGuard';

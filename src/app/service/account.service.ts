@@ -24,8 +24,8 @@ export class AccountService {
 			let encyptedPassword = CryptoJS.SHA256(password).toString();
 			//console.log(encyptedPassword);
 
-			//return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: encyptedPassword}).subscribe(
-			return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: password}).subscribe(
+			return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: encyptedPassword}).subscribe(
+			//return this.http.post(`${Config.apiServer}${Config.apiVersion}/login`, { 'email': email, password: password}).subscribe(
 				res => {
 				
 				  	if(res['code'] == 0 && res['data']){

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
 import { ethState } from '../../../../reducers/ethReducer';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { TransferEthDialogComponent } from '../../../dialog/transfer-eth-dialog/transfer-eth-dialog.component';
 
@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
 	address : string;
 	email : string;
 	ethOb : Observable<ethState>;
+
 
   	constructor(private ethService : EthService, private store: Store<ethState>, public dialog: MatDialog) {
 
@@ -40,6 +41,7 @@ export class MainComponent implements OnInit {
 			this.email = user.email;
 			this.address = user.ethAddress;
 		}
+
   	}
 
 	transfer(event) {
@@ -56,8 +58,6 @@ export class MainComponent implements OnInit {
 				let email = user.email;
 				this.ethService.transfer(email, result.to, result.ether, result.gasLimit, result.gasPrice, result.secret);
 			}
-
-			console.log(result);
 		});
 	}
 }

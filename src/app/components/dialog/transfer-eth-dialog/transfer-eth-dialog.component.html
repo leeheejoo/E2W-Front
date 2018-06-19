@@ -24,7 +24,7 @@
 			</li>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput placeholder="Enter your secret"  name="secret" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="password" >
+					<input matInput placeholder="Enter your secret"  name="secret" [type]="secretHide ? 'password' : 'text'" [(ngModel)]="secret" >
 					<mat-icon matSuffix (click)="secretHide = !secretHide">{{secretHide ? 'visibility' : 'visibility_off'}}</mat-icon>
 				</mat-form-field>		
 			</li>

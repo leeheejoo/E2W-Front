@@ -49,11 +49,11 @@ export class EthTransactionHistoryAction implements Action {
 ////////////////////////////////////////////////
 
 
-export const ETH_TRANSFER : string = 'ETH_TRANSFER';
+export const ETH_TRANSFER_COMMITED : string = 'ETH_TRANSFER_COMMITED';
 
 export class EthTransferAction implements Action {
 
-	readonly type = ETH_TRANSFER
+	readonly type = ETH_TRANSFER_COMMITED
 
 	constructor(public transaction: TransactionHistory) {
 
@@ -92,7 +92,7 @@ export function ethReducer(state: ethState = initialState, action) {
 			return { balance : state.balance, transactionHistory : action.transactionHistory };
 		}
 
-		case ETH_TRANSFER:{
+		case ETH_TRANSFER_COMMITED:{
 
 			/*
 			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
@@ -100,8 +100,9 @@ export function ethReducer(state: ethState = initialState, action) {
 				user.uncommitedTransfers.push(action.transaction);
 				localStorage.setItem('e2w-currentUser',JSON.stringify(user));
 			}
-			state.transactionHistory.unshift(action.transaction);
 			*/
+
+			state.transactionHistory.unshift(action.transaction);
 
 			return { balance : state.balance, transactionHistory : state.transactionHistory };
 		}
