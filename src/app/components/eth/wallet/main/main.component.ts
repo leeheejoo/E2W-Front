@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { ethState } from '../../../../reducers/ethReducer';
+import { ethState, ETH_BALACNE } from '../../../../reducers/ethReducer';
 import { Observable, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { TransferEthDialogComponent } from '../../../dialog/transfer-eth-dialog/transfer-eth-dialog.component';
@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
 	address : string;
 	email : string;
 	ethOb : Observable<ethState>;
-
+	name : string = "< Ethereum >";
 
   	constructor(private ethService : EthService, private store: Store<ethState>, public dialog: MatDialog) {
 
@@ -25,10 +25,15 @@ export class MainComponent implements OnInit {
 
 		this.ethOb.subscribe(state => {
 
-			if(state){	
+			if(state.actionType == ETH_BALACNE && state.balance){	
 				this.balance = state.balance;
-			}
 
+				let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+				if(user) {
+					user.lastUrl = `/eth`;
+					localStorage.setItem('e2w-currentUser',JSON.stringify(user));
+				}
+			}
 		});
    	}
 
@@ -47,17 +52,22 @@ export class MainComponent implements OnInit {
 	transfer(event) {
 
 		let dialogRef = this.dialog.open(TransferEthDialogComponent, {
-			minWidth: '400px',
+			minWidth: '400px', 
+			data: {
+				unit:"ETH"
+			}
 		});
 	  
 		dialogRef.afterClosed().subscribe(result => {
 
-			// test address : 0x8fb03b6c7ffee7af1d986327350718ce9c68ede0
-			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-			if(user) {
-				let email = user.email;
-				this.ethService.transfer(email, result.to, result.ether, result.gasLimit, result.gasPrice, result.secret);
+			if(result !== 'cancel') {
+				let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+				if(user) {
+					let email = user.email;
+					this.ethService.transfer(email, result.to, result.ether, result.gasLimit, result.gasPrice, result.secret);
+				}
 			}
+
 		});
 	}
 }

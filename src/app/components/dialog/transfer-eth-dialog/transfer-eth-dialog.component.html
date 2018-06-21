@@ -1,15 +1,15 @@
-<h2 matDialogTitle>Transfer Ether</h2>
+<h2 matDialogTitle>Transfer {{unit}}</h2>
 <mat-dialog-content>
 	<form #modalForm="ngForm">
 		<ul>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput [(ngModel)]="to"  name="to" placeholder="Enter the address to receive the ether.">
+					<input matInput [(ngModel)]="to"  name="to" placeholder="Enter the address to receive the {{unit}}.">
 				</mat-form-field>
 			</li>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput [(ngModel)]="ether"  name="ether" [type]="'number'" placeholder="Enter an Ether value to transfer.">
+					<input matInput [(ngModel)]="ether"  name="ether" [type]="'number'" placeholder="Enter an {{unit}} value to transfer.">
 				</mat-form-field>
 			</li>
 			<li>
@@ -19,7 +19,7 @@
 			</li>
 			<li>
 				<mat-form-field class="transfer-eth-dialog-input">
-					<input matInput [(ngModel)]="gasPrace"  name="gasPrice" [type]="'number'" placeholder="Enter an gas prace value for transfer.">
+					<input matInput [(ngModel)]="gasPrice"  name="gasPrice" [type]="'number'" placeholder="Enter an gas price value for transfer.">
 				</mat-form-field>	
 			</li>
 			<li>

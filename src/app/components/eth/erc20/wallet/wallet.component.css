@@ -1,11 +1,11 @@
-.eth-wallet {
+.eth-erc20-wallet {
     background: white;
     height: 84vh;
     text-align: center;
 }
 
 @media ( max-width: 800px ){
-    .eth-wallet {
+    .eth-erc20-wallet {
         width: 100%;
         height: auto;
         background: white;

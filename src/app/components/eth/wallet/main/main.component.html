@@ -1,8 +1,9 @@
 <div class="eth-main">
-    <p class="eth-email"> {{email}} </p>
+    <p class="eth-name"> {{name}} </p>
     <div class="eth-qrcode">
         <qr-code [value]="address" [size]="200" [level]="'L'"></qr-code>
     </div>
+    <p class="eth-email"> {{email}} </p>
     <p class="eth-address"> {{address}} </p>
     <p class="eth-balance"> {{balance}} ETH</p>
     <button mat-raised-button color="primary" class="eth-transfer-button" (click)="transfer($event)">Transfer</button>

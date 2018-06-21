@@ -29,15 +29,21 @@ import { JwtInterceptor } from './utils/jwtInterceptor';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './reducers/loginReducer';
 import { ethReducer } from './reducers/ethReducer';
+import { navigationReducer } from './reducers/navigationReducer';
 import { QRCodeModule } from 'angular2-qrcode';
+import { AddTokenDialogComponent } from './components/dialog/add-token-dialog/add-token-dialog.component';
+import { WalletComponent as EthErc20WalletComponent } from './components/eth/erc20/wallet/wallet.component';
+import { MainComponent as EthErc20MainComponent } from './components/eth/erc20/wallet/main/main.component';
+import { TransactionHistoryComponent as EthErc20TransactionHistoryComponent } from './components/eth/erc20/wallet/transaction-history/transaction-history.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'eth', component: EthWalletComponent, canActivate:[AuthGuard]},
-  { path: 'eos', component: EOSWalletComponent, canActivate:[AuthGuard] },
-  { path: '**', redirectTo: 'login', pathMatch: 'full'  }
+	{ path: '', redirectTo: 'login', pathMatch: 'full' },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'register', component: RegisterComponent },
+	{ path: 'eth', component: EthWalletComponent, canActivate:[AuthGuard]},
+	{ path: 'eth/erc20/:address', component: EthErc20WalletComponent, canActivate:[AuthGuard]},
+	{ path: 'eos', component: EOSWalletComponent, canActivate:[AuthGuard] },
+	{ path: '**', redirectTo: 'login', pathMatch: 'full'  }
 ];
 
 @NgModule({
@@ -55,7 +61,11 @@ const routes: Routes = [
     FooterComponent,
     SecretPadComponent,
     AlertDialogComponent,
-    TransferEthDialogComponent
+    TransferEthDialogComponent,
+    AddTokenDialogComponent,
+    EthErc20WalletComponent,
+    EthErc20MainComponent,
+    EthErc20TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +88,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     StoreModule.forRoot({ 
       'loginReducer' : loginReducer, 
-      'ethReducer' : ethReducer
+	  'ethReducer' : ethReducer,
+	  'navigationReducer' : navigationReducer
    })
   ],
   providers: [
@@ -94,7 +105,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     AlertDialogComponent,
-    TransferEthDialogComponent
+    TransferEthDialogComponent,
+    AddTokenDialogComponent
   ],
   bootstrap: [AppComponent]
 })

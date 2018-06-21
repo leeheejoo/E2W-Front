@@ -1,0 +1,12 @@
+<h2 matDialogTitle>Add Token (ERC20)</h2>
+<mat-dialog-content>
+	<form #modalForm="ngForm">
+		<mat-form-field class="transfer-add-token-dialog-input">
+			<input matInput [(ngModel)]="address"  name="address" placeholder="Enter the ERC20 address.">
+		</mat-form-field>
+	</form>
+</mat-dialog-content>	
+<mat-dialog-actions align="end">
+	<button mat-button [mat-dialog-close]="modalForm.value" color="primary">Open</button>
+	<button mat-button matDialogClose="cancel" color="primary">Close</button>
+</mat-dialog-actions>

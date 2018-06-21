@@ -1,15 +1,15 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { EthService } from '../../../../service/eth.service';
+import { EthService } from '../../../../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { TransactionHistory, ethState, ETH_TRANSFER_COMMITED, ETH_TRANSACTION_HISTORY } from '../../../../reducers/ethReducer';
+import { TransactionHistory, ethState, ETH_TRANSFER_COMMITED, ETH_TRANSACTION_HISTORY} from '../../../../../reducers/ethReducer';
 import { Observable, Subject } from 'rxjs';
 import { map } from "rxjs/operators";
-import { Config } from '../../../../configs/config'
-import { WebsocketService, Message } from '../../../../service/websocket.service';
+import { Config } from '../../../../../configs/config'
+import { WebsocketService, Message } from '../../../../../service/websocket.service';
 
 
 @Component({
-	selector: 'eth-transaction-history',
+	selector: 'eth-erc20-transaction-history',
 	templateUrl: './transaction-history.component.html',
 	styleUrls: ['./transaction-history.component.css'],
 	providers: [WebsocketService]
@@ -59,7 +59,7 @@ export class TransactionHistoryComponent implements OnInit {
 				}
 			} else 	if(msg.type == 'ethTransferCommited'){
 
-				//console.log(msg);
+				console.log(msg);
 
 				let commitedTransfer = {
 					blockNumber: msg.data.blockNumber,

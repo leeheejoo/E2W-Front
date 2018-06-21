@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
+import { EthService } from '../../service/eth.service';
 import { Store } from '@ngrx/store';
 import { LOGIN, LOGOUT, loginState } from '../../reducers/loginReducer';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { AddTokenDialogComponent } from '../dialog/add-token-dialog/add-token-dialog.component';
 
 @Component({
 	selector: 'navigation',
@@ -15,9 +19,10 @@ export class NavigationComponent implements OnInit {
 	loginOb : Observable<loginState>;
 	isLogIn : boolean = false;
 
-  	constructor(private accountService : AccountService, private store: Store<loginState>) {
+	  constructor(private accountService : AccountService, private ethService : EthService, private router: Router,
+		 private loginStore: Store<loginState>,  public dialog: MatDialog) {
 
-		this.loginOb = this.store.select('loginReducer');
+		this.loginOb = this.loginStore.select('loginReducer');
 
 		this.loginOb.subscribe(state => {
 
@@ -40,5 +45,28 @@ export class NavigationComponent implements OnInit {
 
 	logOut(event) {
 		this.accountService.logout();
+	}
+
+	addToken(event) {
+		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+		let tmCurrent = new Date();
+
+		if (user && user.exp > tmCurrent.getTime()) {
+
+			let dialogRef = this.dialog.open(AddTokenDialogComponent, {
+				minWidth: '400px',
+			});
+		  
+			dialogRef.afterClosed().subscribe(result => {
+
+				if(result !== 'cancel' ){
+					if(result.address) {
+						this.router.navigate([`/eth/erc20/${result.address}`]);
+					}
+				}
+			});
+
+			return;
+		}
 	}
 }

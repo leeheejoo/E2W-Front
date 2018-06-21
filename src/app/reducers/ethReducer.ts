@@ -60,51 +60,66 @@ export class EthTransferAction implements Action {
 	}
 }
 
+
+////////////////////////////////////////////////
+
+
+export const ETH_ERC20_INFO : string = 'ETH_ERC20_INFO';
+
+export class EthErc20TokenInfo {
+
+	constructor( public address:string,
+		public adjustedBalance:string, 
+		public balance:string, 
+		public decimal:string, 
+		public name:string, 
+		public symbol:string ) {
+
+	}
+}
+
+export class EthErc20InfoAction implements Action {
+
+	readonly type = ETH_ERC20_INFO
+
+	constructor( public info : EthErc20TokenInfo) {
+
+	}
+}
+
 //////////////////////////////////////////
 
 export interface ethState {
+	actionType : string,
 	balance: Number;
 	transactionHistory: Array<TransactionHistory>;
+	erc20Info: EthErc20TokenInfo;
 }
 
 export const initialState: ethState = {
+	actionType : undefined,
 	balance: 0,
-	transactionHistory:[]
+	transactionHistory:[],
+	erc20Info: undefined
 };
 
 export function ethReducer(state: ethState = initialState, action) {
 	switch (action.type) {
 
 		case ETH_BALACNE:
-			return { balance : action.balance, transactionHistory : state.transactionHistory  };
+			return { actionType : ETH_BALACNE, balance : action.balance };
 
 		case ETH_TRANSACTION_HISTORY: {
-
-			/*
-			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-			if(user){
-				for(let i=0; i< user.uncommitedTransfers.length; i++){
-					action.transactionHistory.unshift(user.uncommitedTransfers[i]); 
-				}
-			}
-			*/
-	
-			return { balance : state.balance, transactionHistory : action.transactionHistory };
+			return { actionType : ETH_TRANSACTION_HISTORY, transactionHistory : action.transactionHistory };
 		}
 
 		case ETH_TRANSFER_COMMITED:{
-
-			/*
-			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-			if(user) {
-				user.uncommitedTransfers.push(action.transaction);
-				localStorage.setItem('e2w-currentUser',JSON.stringify(user));
-			}
-			*/
-
 			state.transactionHistory.unshift(action.transaction);
+			return { actionType : ETH_TRANSFER_COMMITED, transactionHistory : state.transactionHistory };
+		}
 
-			return { balance : state.balance, transactionHistory : state.transactionHistory };
+		case ETH_ERC20_INFO:{
+			return { actionType : ETH_ERC20_INFO, erc20Info : action.info};
 		}
 
 		default:

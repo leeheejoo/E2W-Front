@@ -15,6 +15,14 @@ export class AppComponent implements OnInit{
 	}
 
  	ngOnInit(){
+
+		let store = JSON.parse(localStorage.getItem('e2w-store'));
+		if(!store){
+			localStorage.setItem('e2w-store', JSON.stringify({
+				tokens: {}
+			}));
+		} 
+
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 		let tmCurrent = new Date();
 

@@ -1,0 +1,10 @@
+<div class="eth-erc20-main">
+    <p class="eth-erc20-name"> {{name}} </p>
+    <div class="eth-erc20-qrcode">
+        <qr-code [value]="address" [size]="200" [level]="'L'"></qr-code>
+    </div>
+    <p class="eth-erc20-email"> {{email}} </p>
+    <p class="eth-erc20-address"> {{address}} </p>
+    <p class="eth-erc20-balance"> {{balance}} {{unit}}</p>
+    <button mat-raised-button color="primary" class="eth-erc20-transfer-button" (click)="transfer($event)">Transfer</button>
+</div>

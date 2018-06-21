@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'eth-wallet',
+	selector: 'eth-erc20-wallet',
 	templateUrl: './wallet.component.html',
 	styleUrls: ['./wallet.component.css']
 })
 export class WalletComponent implements OnInit {
 
-	constructor() { 
-		
-	}
+  constructor() { }
 
 	ngOnInit() {
-
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-.eth-main {
+.eth-erc20-main {
     background: rgb(255, 255, 255);
     height: 84vh;
     text-align: center;
@@ -10,7 +10,7 @@
 }
 
 @media ( max-width: 800px ){
-    .eth-main {
+    .eth-erc20-main {
         float: none;
         width: 100%;
         background: rgb(255, 255, 255);
@@ -21,14 +21,14 @@
     }
 }
 
-.eth-name{
+.eth-erc20-name{
     font-size: 30px;
     font-weight: 600;
     color: #3F51B5;
     margin-top: 6vh;
 }
 
-.eth-qrcode{
+.eth-erc20-qrcode{
     width: 300px;
     height: 300px;
     margin-left: auto;
@@ -36,14 +36,14 @@
     margin-top: 4vh;
 }
 
-.eth-email{
+.eth-erc20-email{
     font-size: 22px;
     font-weight: 400;
     color: slategrey;
     margin-top: -80px;
 }
 
-.eth-address{
+.eth-erc20-address{
     font-size: 20px;
     font-weight: 400;
     overflow-wrap: break-word;
@@ -53,7 +53,7 @@
     margin-right: 5vw;
 }
 
-.eth-balance{
+.eth-erc20-balance{
     font-size: 26px;
     font-weight: 500;
     overflow-wrap: break-word;
@@ -62,7 +62,7 @@
     margin-bottom: 4vh;
 }
 
-.eth-transfer-button{
+.eth-erc20-transfer-button{
     width: 168px;
     height: 48px;
     font-size: 16px;

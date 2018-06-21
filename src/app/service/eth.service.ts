@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from '../configs/config';
 import { Store } from '@ngrx/store';
-import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_TRANSFER_COMMITED, TransactionHistory, ethState } from '../reducers/ethReducer';
+import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_ERC20_INFO, TransactionHistory, ethState, EthErc20TokenInfo } from '../reducers/ethReducer';
 import { AlertDialogComponent as AlertDialog } from '../components/dialog/alert-dialog/alert-dialog.component';
 import { MatDialog } from '@angular/material';
 import * as CryptoJS from 'crypto-js';
@@ -103,8 +103,8 @@ export class EthService {
 
 		if(email && to && value && gasLimit && gasPrice && secret) {
 
-			let encyptedSecret = CryptoJS.SHA256(secret).toString();
-			//let encyptedSecret = secret;
+			//let encyptedSecret = CryptoJS.SHA256(secret).toString();
+			let encyptedSecret = secret;
 
 			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/transfer`, { 'email': email, 'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
 				res => {
@@ -150,6 +150,42 @@ export class EthService {
 					message:'Please enter all input values ​​for transfer.'
 				} 
 			});
+		}
+	}
+
+	getErc20TokenInfo(email, address) {
+
+		if(email && address) {
+
+			let params = new HttpParams().set('email', email).set('erc20TokenAddress', address);
+
+			//console.log(params);
+
+			return this.http.get(`${Config.apiServer}${Config.apiVersion}/eth/erc20/info`,{ params: params }).subscribe(
+				res => {
+				
+					  if(res['code'] == 0 && res['data']){
+
+						//console.log(res);
+
+						let info = new EthErc20TokenInfo(			
+							res['data']['address'], 
+							res['data']['adjustedBalance'], 
+							res['data']['balance'], 
+							res['data']['decimal'],  
+							res['data']['name'],  
+							res['data']['symbol'] );
+
+						this.store.dispatch({ type: ETH_ERC20_INFO, 'info' : info});
+					}			 
+				},
+				err => {
+					this.store.dispatch({ type: ETH_ERC20_INFO, 'info' : undefined});
+					console.log("EthService getErc20TokenInfo error occured");
+					console.log(err);
+				}
+			);
+	
 		}
 	}
 }
