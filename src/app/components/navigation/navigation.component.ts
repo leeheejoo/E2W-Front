@@ -18,9 +18,11 @@ export class NavigationComponent implements OnInit {
 	loginIcon : string = "lock";
 	loginOb : Observable<loginState>;
 	isLogIn : boolean = false;
+	erc20Tokens : Array<string>;
 
-	  constructor(private accountService : AccountService, private ethService : EthService, private router: Router,
-		 private loginStore: Store<loginState>,  public dialog: MatDialog) {
+	constructor(private accountService : AccountService, private ethService : EthService, private router: Router,
+		private loginStore: Store<loginState>,  public dialog: MatDialog) {
+
 
 		this.loginOb = this.loginStore.select('loginReducer');
 
@@ -29,10 +31,33 @@ export class NavigationComponent implements OnInit {
 			if(state){	
 				this.isLogIn = state.login;
 				
-				if(state.login == true)
+				if(state.login == true){
+
 					this.loginIcon = "face";
-				else
+
+					let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+					let store = JSON.parse(localStorage.getItem('e2w-store'));
+
+					if (store && store.tokens) {
+			
+						let tokens = store.tokens[user.email];
+						
+						if(tokens) {
+							this.erc20Tokens = new Array<string>();
+							for(let token in tokens) {
+								this.erc20Tokens.push(token);
+							}
+
+						}else {
+							this.erc20Tokens = undefined;
+						}
+
+					}
+				}
+				else {
 					this.loginIcon = "lock";
+					this.erc20Tokens = undefined;
+				}
 			}
 
 		});
@@ -40,7 +65,7 @@ export class NavigationComponent implements OnInit {
   	}
 
 	ngOnInit() {
-
+	
 	}
 
 	logOut(event) {
@@ -48,25 +73,42 @@ export class NavigationComponent implements OnInit {
 	}
 
 	addToken(event) {
-		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-		let tmCurrent = new Date();
 
-		if (user && user.exp > tmCurrent.getTime()) {
+		if(this.isLogIn) {
 
-			let dialogRef = this.dialog.open(AddTokenDialogComponent, {
-				minWidth: '400px',
-			});
-		  
-			dialogRef.afterClosed().subscribe(result => {
+			let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+			let tmCurrent = new Date();
 
-				if(result !== 'cancel' ){
-					if(result.address) {
-						this.router.navigate([`/eth/erc20/${result.address}`]);
+			if (user && user.exp > tmCurrent.getTime()) {
+	
+				let dialogRef = this.dialog.open(AddTokenDialogComponent, {
+					minWidth: '400px',
+				});
+			  
+				dialogRef.afterClosed().subscribe(result => {
+	
+					if(result !== 'cancel' ){
+						if(result.address) {
+							this.router.navigate([`/eth/erc20/${result.address}`]);
+						}
 					}
-				}
-			});
+				});
+	
+				return;
+			}
+		}	
+	}
 
-			return;
+	clickErc20TokenMenu(name) {
+
+		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+		let store = JSON.parse(localStorage.getItem('e2w-store'));
+
+		if (store && store.tokens) {
+			let tokens = store.tokens[user.email];
+			if(tokens[name]){
+				this.router.navigate([`/eth/erc20/${tokens[name]}`]);
+			}
 		}
 	}
 }

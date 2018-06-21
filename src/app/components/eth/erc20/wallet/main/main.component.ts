@@ -16,12 +16,14 @@ export class MainComponent implements OnInit {
 
 	balance : string;
 	address : string;
+	contractAddress : string;
 	email : string;
 	ethOb : Observable<ethState>;
 	name : string;
 	unit : string;
 
-  	constructor(private ethService : EthService, private store: Store<ethState>, public dialog: MatDialog, private router: Router, private activeRoute: ActivatedRoute) {
+	  constructor(private ethService : EthService, private store: Store<ethState>, public dialog: MatDialog, private router: Router,
+		 private activeRoute: ActivatedRoute) {
 
 		this.ethOb = this.store.select('ethReducer');
 
@@ -29,8 +31,8 @@ export class MainComponent implements OnInit {
 
 			if(state.actionType ===  ETH_ERC20_INFO &&  state.erc20Info){	
 
+				this.contractAddress = state.erc20Info.address;
 				this.balance = state.erc20Info.adjustedBalance;
-				this.address = state.erc20Info.address;
 				this.name = state.erc20Info.name;
 				this.unit = state.erc20Info.symbol;
 
@@ -39,14 +41,16 @@ export class MainComponent implements OnInit {
 
 				if(user && store && store.tokens){
 
+					this.address = user.ethAddress;
+
 					if(!store.tokens[user.email]){
 						store.tokens[user.email] = {};
 					}
-					
-					store.tokens[user.email][this.unit] = this.address;	
+
+					store.tokens[user.email][this.unit] = this.contractAddress;	
 					localStorage.setItem('e2w-store',JSON.stringify(store));
 
-					user.lastUrl = `/eth/erc20/${this.address}`;
+					user.lastUrl = `/eth/erc20/${this.contractAddress}`;
 					localStorage.setItem('e2w-currentUser',JSON.stringify(user));
 				}
 
@@ -54,7 +58,7 @@ export class MainComponent implements OnInit {
 		});
 
 		this.activeRoute.params.subscribe( params => {
-			this.address = params.address;
+			this.contractAddress = params.address;
 		});
 
    	}
@@ -64,7 +68,7 @@ export class MainComponent implements OnInit {
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 
 		if(user){
-			this.ethService.getErc20TokenInfo(user.email,this.address);
+			this.ethService.getErc20TokenInfo(user.email,this.contractAddress);
 			this.email = user.email;
 		}
 
