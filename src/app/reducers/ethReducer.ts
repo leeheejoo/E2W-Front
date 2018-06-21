@@ -65,6 +65,7 @@ export class EthTransferAction implements Action {
 
 
 export const ETH_ERC20_INFO : string = 'ETH_ERC20_INFO';
+export const ETH_ERC20_INFO_FAIL : string = 'ETH_ERC20_INFO_FAIL';
 
 export class EthErc20TokenInfo {
 
@@ -120,6 +121,10 @@ export function ethReducer(state: ethState = initialState, action) {
 
 		case ETH_ERC20_INFO:{
 			return { actionType : ETH_ERC20_INFO, erc20Info : action.info};
+		}
+
+		case ETH_ERC20_INFO_FAIL: {
+			return { actionType : ETH_ERC20_INFO_FAIL};
 		}
 
 		default:

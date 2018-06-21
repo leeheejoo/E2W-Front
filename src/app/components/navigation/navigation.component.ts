@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
 import { EthService } from '../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { LOGIN, LOGOUT, loginState } from '../../reducers/loginReducer';
+import { loginState } from '../../reducers/loginReducer';
+import { navigationState, NAVI_UPDATE_ERC20_TOKENS } from '../../reducers/navigationReducer';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { AddTokenDialogComponent } from '../dialog/add-token-dialog/add-token-dialog.component';
@@ -17,11 +18,12 @@ export class NavigationComponent implements OnInit {
 
 	loginIcon : string = "lock";
 	loginOb : Observable<loginState>;
+	naviOb : Observable<navigationState>;
 	isLogIn : boolean = false;
 	erc20Tokens : Array<string>;
 
 	constructor(private accountService : AccountService, private ethService : EthService, private router: Router,
-		private loginStore: Store<loginState>,  public dialog: MatDialog) {
+		private loginStore: Store<loginState>,  private naviStore: Store<navigationState>,public dialog: MatDialog) {
 
 
 		this.loginOb = this.loginStore.select('loginReducer');
@@ -34,30 +36,23 @@ export class NavigationComponent implements OnInit {
 				if(state.login == true){
 
 					this.loginIcon = "face";
-
-					let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
-					let store = JSON.parse(localStorage.getItem('e2w-store'));
-
-					if (store && store.tokens) {
-			
-						let tokens = store.tokens[user.email];
-						
-						if(tokens) {
-							this.erc20Tokens = new Array<string>();
-							for(let token in tokens) {
-								this.erc20Tokens.push(token);
-							}
-
-						}else {
-							this.erc20Tokens = undefined;
-						}
-
-					}
+					this.updateErc20TokensMenu();
 				}
 				else {
 					this.loginIcon = "lock";
 					this.erc20Tokens = undefined;
 				}
+			}
+
+		});
+
+
+		this.naviOb = this.naviStore.select('navigationReducer');
+
+		this.naviOb.subscribe(state => {
+
+			if(state){	
+				this.updateErc20TokensMenu();
 			}
 
 		});
@@ -93,8 +88,6 @@ export class NavigationComponent implements OnInit {
 						}
 					}
 				});
-	
-				return;
 			}
 		}	
 	}
@@ -108,6 +101,27 @@ export class NavigationComponent implements OnInit {
 			let tokens = store.tokens[user.email];
 			if(tokens[name]){
 				this.router.navigate([`/eth/erc20/${tokens[name]}`]);
+			}
+		}
+	}
+
+	updateErc20TokensMenu() {
+
+		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
+		let store = JSON.parse(localStorage.getItem('e2w-store'));
+
+		if (store && store.tokens) {
+
+			let tokens = store.tokens[user.email];
+			
+			if(tokens) {
+				this.erc20Tokens = new Array<string>();
+				for(let token in tokens) {
+					this.erc20Tokens.push(token);
+				}
+
+			}else {
+				this.erc20Tokens = undefined;
 			}
 		}
 	}

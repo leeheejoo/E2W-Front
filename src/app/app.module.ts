@@ -88,8 +88,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     StoreModule.forRoot({ 
       'loginReducer' : loginReducer, 
-	  'ethReducer' : ethReducer,
-	  'navigationReducer' : navigationReducer
+    'ethReducer' : ethReducer,
+    'navigationReducer' : navigationReducer
    })
   ],
   providers: [

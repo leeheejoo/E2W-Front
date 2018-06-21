@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from '../configs/config';
 import { Store } from '@ngrx/store';
-import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_ERC20_INFO, TransactionHistory, ethState, EthErc20TokenInfo } from '../reducers/ethReducer';
+import { ETH_BALACNE, ETH_TRANSACTION_HISTORY, ETH_ERC20_INFO, ETH_ERC20_INFO_FAIL, TransactionHistory, ethState, EthErc20TokenInfo } from '../reducers/ethReducer';
 import { AlertDialogComponent as AlertDialog } from '../components/dialog/alert-dialog/alert-dialog.component';
 import { MatDialog } from '@angular/material';
 import * as CryptoJS from 'crypto-js';
@@ -164,7 +164,7 @@ export class EthService {
 			return this.http.get(`${Config.apiServer}${Config.apiVersion}/eth/erc20/info`,{ params: params }).subscribe(
 				res => {
 				
-					  if(res['code'] == 0 && res['data']){
+					if(res['code'] == 0 && res['data']){
 
 						//console.log(res);
 
@@ -178,9 +178,12 @@ export class EthService {
 
 						this.store.dispatch({ type: ETH_ERC20_INFO, 'info' : info});
 					}			 
+					else {
+						this.store.dispatch({ type: ETH_ERC20_INFO_FAIL});
+					}
 				},
 				err => {
-					this.store.dispatch({ type: ETH_ERC20_INFO, 'info' : undefined});
+					this.store.dispatch({ type: ETH_ERC20_INFO_FAIL});
 					console.log("EthService getErc20TokenInfo error occured");
 					console.log(err);
 				}

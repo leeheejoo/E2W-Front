@@ -11,7 +11,7 @@
 		<button mat-menu-item class="navi-menu-button" (click)= "addToken($e)">Add Token (ERC20) </button>
 	</mat-menu>
 	<mat-menu #tokensMenu="matMenu">
-		<button  class="navi-menu-button" mat-menu-item  *ngFor="let token of erc20Tokens"  (click)="clickErc20TokenMenu(token)">{{token}}</button>
+		<button  class="navi-menu-button" mat-menu-item  *ngFor="let token of erc20Tokens;"  (click)="clickErc20TokenMenu(token)">{{token}}</button>
 	</mat-menu>
 	<span routerLink="/eos" class="navi-button">EOS</span> 
 	<span class="navi-spacer"></span> 

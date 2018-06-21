@@ -1,35 +1,19 @@
 import {  Action } from '@ngrx/store';
 
-export const ADD_ERC20_TOKEN = 'ADD_ERC20_TOKEN';
-
-export class AddErc20TokenInfo {
-
-	constructor( public symbol : string, public address: string ) {
-
-	}
-}
-
-export class AddErc20TokenAction implements Action {
-
-	readonly type = ADD_ERC20_TOKEN
-
-	constructor(public info : AddErc20TokenInfo) {
-
-	}
-}
+export const NAVI_UPDATE_ERC20_TOKENS = 'NAVI_UPDATE_ERC20_TOKENS';
 
 export interface navigationState {
-	addErc20Token: AddErc20TokenInfo;
+	updateErc20Tokens: boolean;
 }
 
 export const initialState: navigationState = {
-	addErc20Token:undefined
+	updateErc20Tokens:false,
 };
 
-export function navigationReducer(state: navigationState = initialState, action) {
+export function navigationReducer(state: navigationState = initialState, action: Action) {
 	switch (action.type) {
-		case ADD_ERC20_TOKEN:
-			return { addErc20Token : action.info };
+		case NAVI_UPDATE_ERC20_TOKENS:
+			return { login : true };
 
 		default:
 			return state;
