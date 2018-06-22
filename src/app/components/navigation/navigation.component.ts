@@ -82,7 +82,7 @@ export class NavigationComponent implements OnInit {
 			  
 				dialogRef.afterClosed().subscribe(result => {
 	
-					if(result !== 'cancel' ){
+					if(result && result !== 'cancel' ){
 						if(result.address) {
 							this.router.navigate([`/eth/erc20/${result.address}`]);
 						}
@@ -110,7 +110,7 @@ export class NavigationComponent implements OnInit {
 		let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 		let store = JSON.parse(localStorage.getItem('e2w-store'));
 
-		if (store && store.tokens) {
+		if (user && store && store.tokens) {
 
 			let tokens = store.tokens[user.email];
 			

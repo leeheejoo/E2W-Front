@@ -85,7 +85,7 @@ export class TransactionHistoryComponent implements OnInit {
 					let dialogRef = this.dialog.open(AlertDialog,{
 						minWidth: '300px',
 						data: { 
-							title:"Trenfer result", 
+							title:"Tranfer result", 
 							message:msg.data
 						} 
 					});
