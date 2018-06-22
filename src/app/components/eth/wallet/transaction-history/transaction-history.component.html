@@ -18,7 +18,10 @@
             <ng-template #toTimeAddress>
                 <div class="eth-history-item-time-address"> 
                     <p mat-line> {{th.time}} </p>
-                    <p mat-line> {{th.to}} </p>
+                    <p mat-line *ngIf="userAddress == th.from; else fromTimeAddress"> {{th.to}} </p>
+                    <ng-template #fromTimeAddress>
+                        <p mat-line> {{th.from}} </p>
+                    </ng-template>   
                 </div>
             </ng-template>
             <div class="eth-history-item-value-fees">

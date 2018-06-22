@@ -1,12 +1,13 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EthService } from '../../../../service/eth.service';
 import { Store } from '@ngrx/store';
-import { TransactionHistory, ethState, ETH_TRANSFER_COMMITED, ETH_TRANSACTION_HISTORY } from '../../../../reducers/ethReducer';
+import { TransactionHistory, ethState, ETH_TRANSFER_COMMITED, ETH_TRANSACTION_HISTORY, ETH_BALACNE, ETH_ERC20_BALACNE } from '../../../../reducers/ethReducer';
 import { Observable, Subject } from 'rxjs';
 import { map } from "rxjs/operators";
 import { Config } from '../../../../configs/config'
 import { WebsocketService, Message } from '../../../../service/websocket.service';
-
+import { MatDialog } from '@angular/material';
+import {AlertDialogComponent as AlertDialog} from '../../../dialog/alert-dialog/alert-dialog.component';
 
 @Component({
 	selector: 'eth-transaction-history',
@@ -21,7 +22,8 @@ export class TransactionHistoryComponent implements OnInit {
 	transactionHistory : Array<TransactionHistory>;
 	e2wServer: Subject<Message>;
 
-	constructor(private ethService : EthService, wsService: WebsocketService, private store: Store<ethState>, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(private ethService : EthService, wsService: WebsocketService, private store: Store<ethState>, 
+		 public dialog: MatDialog, ) {
 
 		this.ethOb = this.store.select('ethReducer');
 
@@ -52,7 +54,8 @@ export class TransactionHistoryComponent implements OnInit {
 				if(user){
 					this.e2wServer.next({
 						type : 'myEmail',
-						data: {
+						code : 0,
+						data : {
 							email:user.email
 						}
 					});	
@@ -61,15 +64,32 @@ export class TransactionHistoryComponent implements OnInit {
 
 				//console.log(msg);
 
-				let commitedTransfer = {
-					blockNumber: msg.data.blockNumber,
-					time: msg.data.time,
-					to: msg.data.to,
-					value: msg.data.value,
-					fees:msg.data.fees,
-				};
-	
-				this.store.dispatch({ type: ETH_TRANSFER_COMMITED, 'transaction':commitedTransfer });
+				if(msg.code === 0 ){
+					let commitedTransfer = {
+						blockNumber: msg.data.blockNumber,
+						time: msg.data.time,
+						from: msg.data.from,
+						to: msg.data.to,
+						value: msg.data.value,
+						fees:msg.data.fees,
+					};
+		
+					this.store.dispatch({ type: ETH_TRANSFER_COMMITED, 'transaction':commitedTransfer });
+					this.store.dispatch({ type: ETH_ERC20_BALACNE, 'balance':msg.data.balance });
+					this.store.dispatch({ type: ETH_BALACNE, 'balance':msg.data.balance });
+				
+				} else {
+
+					this.dialog.closeAll();
+
+					let dialogRef = this.dialog.open(AlertDialog,{
+						minWidth: '300px',
+						data: { 
+							title:"Trenfer result", 
+							message:msg.data
+						} 
+					});
+				}
 			}
 
 		});
@@ -88,6 +108,7 @@ export class TransactionHistoryComponent implements OnInit {
 	ngOnDestroy() {
 		this.e2wServer.next({
 			type :'close',
+			code : 0,
 			data: {}
 		});
 	}

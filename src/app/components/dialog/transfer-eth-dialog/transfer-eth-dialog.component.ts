@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class TransferEthDialogComponent implements OnInit {
 
 	to : string;
-	ether : Number;
+	value : Number;
 	gasLimit : Number = 22000;
 	gasPrice : Number = 80;
 	secret : string;
@@ -17,8 +17,12 @@ export class TransferEthDialogComponent implements OnInit {
 	unit : string;
 	
 	constructor(public dialogRef: MatDialogRef<TransferEthDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
-		if(data)
+
+		if(data){
 			this.unit = data.unit;
+			this.gasLimit = data.gasLimit;
+			this.gasPrice = data.gasPrice;
+		}
 	}
 
 	ngOnInit() {

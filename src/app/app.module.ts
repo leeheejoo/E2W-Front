@@ -34,7 +34,6 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { AddTokenDialogComponent } from './components/dialog/add-token-dialog/add-token-dialog.component';
 import { WalletComponent as EthErc20WalletComponent } from './components/eth/erc20/wallet/wallet.component';
 import { MainComponent as EthErc20MainComponent } from './components/eth/erc20/wallet/main/main.component';
-import { TransactionHistoryComponent as EthErc20TransactionHistoryComponent } from './components/eth/erc20/wallet/transaction-history/transaction-history.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -65,7 +64,6 @@ const routes: Routes = [
     AddTokenDialogComponent,
     EthErc20WalletComponent,
     EthErc20MainComponent,
-    EthErc20TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,

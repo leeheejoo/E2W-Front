@@ -109,30 +109,22 @@ export class EthService {
 			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/transfer`, { 'email': email, 'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
 				res => {
 
-				  	if(res['code'] == 0){
-/*
-						let currentTime = new Date;
+					let message:string ; 
 
-						let uncommitedTransfer = {
-							blockNumber:'???',
-							time: currentTime.toUTCString(),
-							'to':to,
-							'value': value,
-							fees:'???',
-						};
-			
-						this.store.dispatch({ type: ETH_TRANSFER_COMMITED, 'transaction':uncommitedTransfer });
-*/
+				  	if(res['code'] == 0){
+						message = `Transfer Ether Success.`; 
 					}
 					else{
-						let dialogRef = this.dialog.open(AlertDialog,{
-							minWidth: '300px',
-							data: { 
-								title:'Transfer Ether', 
-								message:res['msg']
-							} 
-						});
+						message = res['msg'];
 					}
+				 
+					let dialogRef = this.dialog.open(AlertDialog,{
+						minWidth: '300px',
+						data: { 
+							title:`Transfer Ether`, 
+							'message':message
+						} 
+					});
 				 
 				},
 				err => {
@@ -189,6 +181,54 @@ export class EthService {
 				}
 			);
 	
+		}
+	}
+
+
+	transferForErc20Token(email, erc20TokenAddress, to, value, gasLimit, gasPrice, secret, unit) {
+
+		//console.log(email);
+
+		if(email && to && value && gasLimit && gasPrice && secret) {
+
+			//let encyptedSecret = CryptoJS.SHA256(secret).toString();
+			let encyptedSecret = secret;
+
+			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/erc20/transfer`, { 'email': email, 'erc20TokenAddress': erc20TokenAddress,  'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
+				res => {
+
+					let message:string ; 
+
+				  	if(res['code'] == 0){
+						message = `Transfer ${unit} Success.`; 
+					}
+					else{
+						message = res['msg'];
+					}
+				 
+					let dialogRef = this.dialog.open(AlertDialog,{
+						minWidth: '300px',
+						data: { 
+							title:`Transfer ${unit}`, 
+							'message':message
+						} 
+					});
+				},
+				err => {
+				  	console.log("EthService transferForErc20Token ether error occured");
+				  	console.log(err);
+				}
+			);
+	
+		}else{
+
+			let dialogRef = this.dialog.open(AlertDialog,{
+				minWidth: '300px',
+				data: { 
+					title: `Transfer ${unit}`,
+					message:'Please enter all input values ​​for transfer.'
+				} 
+			});
 		}
 	}
 }

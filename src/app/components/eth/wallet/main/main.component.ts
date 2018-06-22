@@ -54,7 +54,9 @@ export class MainComponent implements OnInit {
 		let dialogRef = this.dialog.open(TransferEthDialogComponent, {
 			minWidth: '400px', 
 			data: {
-				unit:"ETH"
+				unit:"ETH",
+				gasLimit: 22000,
+				gasPrice: 80
 			}
 		});
 	  
@@ -64,7 +66,7 @@ export class MainComponent implements OnInit {
 				let user = JSON.parse(localStorage.getItem('e2w-currentUser'));
 				if(user) {
 					let email = user.email;
-					this.ethService.transfer(email, result.to, result.ether, result.gasLimit, result.gasPrice, result.secret);
+					this.ethService.transfer(email, result.to, result.value, result.gasLimit, result.gasPrice, result.secret);
 				}
 			}
 

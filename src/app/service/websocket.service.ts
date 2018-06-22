@@ -3,6 +3,7 @@ import * as Rx from 'rxjs';
 
 export interface Message {
 	type: string;
+	code: number;
 	data: any;
 }
 
