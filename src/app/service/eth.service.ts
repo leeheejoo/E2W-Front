@@ -103,8 +103,8 @@ export class EthService {
 
 		if(email && to && value && gasLimit && gasPrice && secret) {
 
-			//let encyptedSecret = CryptoJS.SHA256(secret).toString();
-			let encyptedSecret = secret;
+			let encyptedSecret = CryptoJS.SHA256(secret).toString();
+			//let encyptedSecret = secret;
 
 			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/transfer`, { 'email': email, 'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
 				res => {
@@ -191,8 +191,8 @@ export class EthService {
 
 		if(email && to && value && gasLimit && gasPrice && secret) {
 
-			//let encyptedSecret = CryptoJS.SHA256(secret).toString();
-			let encyptedSecret = secret;
+			let encyptedSecret = CryptoJS.SHA256(secret).toString();
+			//let encyptedSecret = secret;
 
 			return this.http.post(`${Config.apiServer}${Config.apiVersion}/eth/erc20/transfer`, { 'email': email, 'erc20TokenAddress': erc20TokenAddress,  'to': to, 'value':+value, 'gasLimit': +gasLimit, 'gasPrice':+gasPrice, 'secret': encyptedSecret }).subscribe(
 				res => {
