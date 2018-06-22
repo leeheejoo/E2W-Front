@@ -16,4 +16,6 @@ ng serve
 
 ![main](./src/assets/screenshots/main.png)
 
-![transfer](./src/assets/screenshots/transfer.png)
+![transfer-ether](./src/assets/screenshots/transfer-ether.png)
+
+![transfer-erc20](./src/assets/screenshots/transfer-erc20.png)
